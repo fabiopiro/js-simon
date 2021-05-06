@@ -31,7 +31,7 @@ function isInArray (array, element) {
 
 
 // Max Number Value
-var maxNumberValue = 10;
+var maxNumberValue = 100;
 console.log("Valore massimo dei numeri proposti", maxNumberValue);
 
 // Numbers To Guess
@@ -39,7 +39,7 @@ var numbersToGuess = 5;
 console.log("Numeri da ricordare e indovinare", numbersToGuess);
 
 // Wait Time
-var waitTime = 10;
+var waitTime = 30;
 console.log("Tempo di attesa", waitTime, "secondi");
 
 // Array Random Numbers - EMPTY
@@ -101,14 +101,17 @@ setTimeout (function() {
     
     }
     
+    document.getElementById("random_numbers").innerHTML = "I numeri erano questi " + arrayRandomNumbers;
+    
     console.log("Numeri inseriti", arrayUserNumbers);
     document.getElementById("numbers").innerHTML = "Hai inserito " + arrayUserNumbers;
+
 
     console.log("Ne hai indovinati", arrayCheck.length, "su", numbersToGuess);
     document.getElementById("correct").innerHTML = "Ne hai indovinati " + arrayCheck.length + " su " + numbersToGuess;
 
     console.log("Numeri indovinati", arrayCheck);
-    document.getElementById("numbers_correct").innerHTML = "Hai indovinato i numeri " + arrayCheck;
+    document.getElementById("numbers_correct").innerHTML = "Hai indovinato: " + arrayCheck;
 
 
 }, waitTime*1000);
