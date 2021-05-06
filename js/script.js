@@ -15,18 +15,76 @@ function randomNumber (min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+// Is In Array
+function isInArray (array, element) {
+
+    for (var i = 0; i < array.length; i++) {
+
+        if (array[i] == element) {
+            return true
+        }
+    }
+    return false
+}
+
 // SCRIPT
-var maxNumber = 10;
+
+// Number Range
+var maxNumberValue = 10;
+// Number To Guess
+var numberToGuess = 5;
+// Wait Time
+var waitTime = 3;
+
+// Array With Random Numbers - EMPTY
 var arrayRandomNumbers = [];
 
-// Array With Random Numbers
-for (var i = 0; i < 5; i++) {
+// Array With Random Numbers - FULL
+/* With For
+for (var i = 0; i < numberToGuess; i++) {
     
-    var number = randomNumber(1, maxNumber);
+    var number = randomNumber(1, maxNumberValue);
     arrayRandomNumbers.push(number);
 
+}
+*/
+
+while (arrayRandomNumbers.length < numberToGuess) {
+
+    var number = randomNumber(1, maxNumberValue);
+
+    if (!isInArray(arrayRandomNumbers, number)) {
+        arrayRandomNumbers.push(number);
+    }
 }
 console.log("Numeri Random", arrayRandomNumbers);
 
 // Alert
 alert ("Numeri\n" + arrayRandomNumbers)
+
+// Number Input
+var arrayUserNumbers = [];
+var arrayCheck = [];
+
+
+setTimeout (function() {
+
+    for (var i = 0; i < numberToGuess; i++) {
+        
+        do {
+            var userNumber = parseInt(prompt("Inserisci i numeri"));
+        } while (isNaN(userNumber) || userNumber < 1 || userNumber > maxNumberValue || isInArray(arrayUserNumbers, userNumber));
+
+        arrayUserNumbers.push(userNumber);
+
+
+        if (isInArray(arrayRandomNumbers, userNumber)) {
+            arrayCheck.push(userNumber)
+        }
+    
+    }
+    console.log("Numeri inseriti", arrayUserNumbers);
+    console.log("Numeri azzeccati ", arrayCheck);
+    console.log("Hai indovinato", arrayCheck.length, "numeri su", numberToGuess);
+
+}, waitTime*1000);
