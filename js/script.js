@@ -26,30 +26,27 @@ function isInArray (array, element) {
     }
     return false
 }
+// FUNCTIONS END
 
-// SCRIPT
 
-// Number Range
+
+// Max Number Value
 var maxNumberValue = 10;
-// Number To Guess
-var numberToGuess = 5;
+console.log("Valore massimo dei numeri proposti", maxNumberValue);
+
+// Numbers To Guess
+var numbersToGuess = 5;
+console.log("Numeri da ricordare e indovinare", numbersToGuess);
+
 // Wait Time
 var waitTime = 3;
+console.log("Tempo di attesa", waitTime, "secondi");
 
-// Array With Random Numbers - EMPTY
+// Array Random Numbers - EMPTY
 var arrayRandomNumbers = [];
 
-// Array With Random Numbers - FULL
-/* With For
-for (var i = 0; i < numberToGuess; i++) {
-    
-    var number = randomNumber(1, maxNumberValue);
-    arrayRandomNumbers.push(number);
-
-}
-*/
-
-while (arrayRandomNumbers.length < numberToGuess) {
+// Array Random Numbers - FULL
+while (arrayRandomNumbers.length < numbersToGuess) {
 
     var number = randomNumber(1, maxNumberValue);
 
@@ -60,31 +57,39 @@ while (arrayRandomNumbers.length < numberToGuess) {
 console.log("Numeri Random", arrayRandomNumbers);
 
 // Alert
-alert ("Numeri\n" + arrayRandomNumbers)
+alert ("Simon Says...\n" + arrayRandomNumbers)
 
-// Number Input
+
+// Game
+// Array User Input - EMPTY
 var arrayUserNumbers = [];
+
+// Array User Input Correct -EMPTY
 var arrayCheck = [];
 
 
 setTimeout (function() {
 
-    for (var i = 0; i < numberToGuess; i++) {
+    for (var i = 0; i < numbersToGuess; i++) {
         
         do {
+            // Input
             var userNumber = parseInt(prompt("Inserisci i numeri"));
+
+        // Input Conditions
         } while (isNaN(userNumber) || userNumber < 1 || userNumber > maxNumberValue || isInArray(arrayUserNumbers, userNumber));
 
+        // Input Save
         arrayUserNumbers.push(userNumber);
 
-
+        // Input Correct save
         if (isInArray(arrayRandomNumbers, userNumber)) {
             arrayCheck.push(userNumber)
         }
     
     }
     console.log("Numeri inseriti", arrayUserNumbers);
-    console.log("Numeri azzeccati ", arrayCheck);
-    console.log("Hai indovinato", arrayCheck.length, "numeri su", numberToGuess);
+    console.log("Hai indovinato", arrayCheck.length, "numeri su", numbersToGuess);
+    console.log("Numeri indovinati", arrayCheck);
 
 }, waitTime*1000);
