@@ -39,7 +39,7 @@ var numbersToGuess = 5;
 console.log("Numeri da ricordare e indovinare", numbersToGuess);
 
 // Wait Time
-var waitTime = 3;
+var waitTime = 10;
 console.log("Tempo di attesa", waitTime, "secondi");
 
 // Array Random Numbers - EMPTY
@@ -59,6 +59,18 @@ console.log("Numeri Random", arrayRandomNumbers);
 // Alert
 alert ("Simon Says...\n" + arrayRandomNumbers)
 
+// Countdown
+var countdown = setInterval (function() {
+
+    document.getElementById("countdown").innerHTML = "<h1> CountDown " + (waitTime - 1) + "</h1>";
+
+    if (waitTime == 1 ) {
+        clearInterval(countdown);
+    } else {
+        waitTime--;
+    }
+
+}, 1000)
 
 // Game
 // Array User Input - EMPTY
@@ -88,8 +100,15 @@ setTimeout (function() {
         }
     
     }
+    
     console.log("Numeri inseriti", arrayUserNumbers);
-    console.log("Hai indovinato", arrayCheck.length, "numeri su", numbersToGuess);
+    document.getElementById("numbers").innerHTML = "Hai inserito " + arrayUserNumbers;
+
+    console.log("Ne hai indovinati", arrayCheck.length, "su", numbersToGuess);
+    document.getElementById("correct").innerHTML = "Ne hai indovinati " + arrayCheck.length + " su " + numbersToGuess;
+
     console.log("Numeri indovinati", arrayCheck);
+    document.getElementById("numbers_correct").innerHTML = "Hai indovinato i numeri " + arrayCheck;
+
 
 }, waitTime*1000);
